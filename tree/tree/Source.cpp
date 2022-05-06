@@ -36,7 +36,7 @@ void show(Node* tree, int lvl) // когда полностью очищаю дерево, выдает ошибку п
 	{
 		show(tree->right, ++lvl);
 		for (int i = 0; i < lvl; ++i) cout << "  ";
-		cout << tree->field<<"("<<tree->word<<")" << '\n';
+		cout << tree->field << "(" << tree->word << ")" << '\n';
 		show(tree->left, ++lvl);
 		lvl--;
 	}
@@ -85,12 +85,12 @@ Node* del(Node* tree, int key)
 	delete d;
 	return tree;
 }
-void delAll(Node* tree)
+void delAll(Node*& tree)
 {
 	if (!tree) return;
 	delAll(tree->left);
 	delAll(tree->right);
-	delete tree;
+	tree = NULL;
 	return;
 }
 Node* search(Node* tree, int key)
@@ -100,9 +100,11 @@ Node* search(Node* tree, int key)
 	{
 		if (key < (key, temp->field)) temp = search(temp->left, key);
 		else if (key > (key, temp->field)) temp = search(temp->right, key);
+		
 	}
 	else cout << "net :)\n";
 	return temp;
+	
 }
 void print_lvl(Node* tree) //неправильно обходит
 {
@@ -147,6 +149,7 @@ int main()
 			cout << "write key ";
 			cin >> key;
 			tmp=search(tree, key);
+			if(tmp!=NULL)
 			cout << "look " << tmp->word;
 		}
 		else if (ans == "6")
